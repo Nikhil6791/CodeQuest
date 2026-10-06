@@ -11,6 +11,10 @@ function getUnlockedBadges(nextState) {
     unlocked.push("first-step");
   }
 
+  if ((nextState.completedLevels || []).length >= 10) {
+    unlocked.push("maze-master");
+  }
+
   const logicChallenges =
     (nextState.correctAnswers.sequence || 0) +
     (nextState.correctAnswers.conditions || 0);

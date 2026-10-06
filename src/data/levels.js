@@ -45,10 +45,10 @@ export const robotLevels = [
     start: { x: 0, y: 3 },
     goal: { x: 3, y: 0 },
     walls: [
+      { x: 0, y: 1 },
       { x: 1, y: 0 },
       { x: 1, y: 1 },
-      { x: 2, y: 2 },
-      { x: 2, y: 3 },
+      { x: 2, y: 1 },
     ],
   },
   {
@@ -83,8 +83,8 @@ export const robotLevels = [
     goal: { x: 3, y: 3 },
     walls: [
       { x: 0, y: 2 },
+      { x: 1, y: 1 },
       { x: 1, y: 2 },
-      { x: 2, y: 0 },
       { x: 2, y: 1 },
       { x: 2, y: 2 },
     ],
@@ -96,10 +96,10 @@ export const robotLevels = [
     goal: { x: 3, y: 3 },
     walls: [
       { x: 1, y: 0 },
-      { x: 1, y: 1 },
-      { x: 2, y: 1 },
+      { x: 0, y: 2 },
+      { x: 1, y: 2 },
       { x: 2, y: 2 },
-      { x: 1, y: 3 },
+      { x: 2, y: 3 },
     ],
   },
   {
@@ -108,11 +108,10 @@ export const robotLevels = [
     start: { x: 0, y: 0 },
     goal: { x: 3, y: 3 },
     walls: [
-      { x: 0, y: 1 },
+      { x: 0, y: 2 },
       { x: 1, y: 1 },
       { x: 1, y: 2 },
       { x: 2, y: 2 },
-      { x: 3, y: 1 },
       { x: 2, y: 3 },
     ],
   },

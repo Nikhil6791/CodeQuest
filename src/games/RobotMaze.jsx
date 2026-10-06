@@ -134,13 +134,17 @@ function RobotMaze() {
       ) {
         completeGame("robot-maze");
         completeLevel(currentLevel.id);
+
+        const isFinalLevel = currentLevel.id === robotLevels.length;
         setResult({
           success: true,
-          title: "🎉 Great Job!",
-          message: "The robot reached the goal! Level unlocked.",
+          title: isFinalLevel ? "🏆 Maze Complete!" : "🎉 Great Job!",
+          message: isFinalLevel
+            ? "You completed all Robot Maze levels! Badge unlocked."
+            : "The robot reached the goal! Level unlocked.",
         });
         setIsRunning(false);
-        if (currentLevel.id < robotLevels.length) {
+        if (!isFinalLevel) {
           setTimeout(() => {
             setCurrentLevelIndex((previous) =>
               Math.min(previous + 1, robotLevels.length - 1),

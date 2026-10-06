@@ -6,6 +6,12 @@ const badges = [
     description: "Complete the first game.",
   },
   {
+    id: "maze-master",
+    name: "Maze Master",
+    icon: "🏁",
+    description: "Complete all 10 Robot Maze levels.",
+  },
+  {
     id: "logic-master",
     name: "Logic Master",
     icon: "🧠",
