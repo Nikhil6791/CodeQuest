@@ -4,33 +4,35 @@ import { loadGameState, saveGameState } from "../utils/storage";
 
 const GameContext = createContext();
 
-function getUnlockedBadges(nextState) {
+function calculateUnlockedBadges(nextState) {
   const unlocked = [];
+  const completedGames = nextState.completedGames || [];
+  const completedLevels = nextState.completedLevels || [];
+  const correctAnswers = nextState.correctAnswers || {};
 
-  if (nextState.completedGames.length >= 1) {
+  if (completedGames.length >= 1) {
     unlocked.push("first-step");
   }
 
-  if ((nextState.completedLevels || []).length >= 10) {
+  if (completedLevels.length >= 10) {
     unlocked.push("maze-master");
   }
 
   const logicChallenges =
-    (nextState.correctAnswers.sequence || 0) +
-    (nextState.correctAnswers.conditions || 0);
+    (correctAnswers.sequence || 0) + (correctAnswers.conditions || 0);
   if (logicChallenges >= 5) {
     unlocked.push("logic-master");
   }
 
-  if ((nextState.correctAnswers.debugging || 0) >= 5) {
+  if ((correctAnswers.debugging || 0) >= 5) {
     unlocked.push("bug-hunter");
   }
 
-  if ((nextState.correctAnswers.loops || 0) >= 3) {
+  if ((correctAnswers.loops || 0) >= 3) {
     unlocked.push("loop-master");
   }
 
-  if (nextState.completedGames.length >= 5) {
+  if (completedGames.length >= 5) {
     unlocked.push("coding-explorer");
   }
 
@@ -38,7 +40,10 @@ function getUnlockedBadges(nextState) {
 }
 
 export function GameProvider({ children }) {
-  const [state, setState] = useState(() => loadGameState());
+  const [state, setState] = useState(() => {
+    const savedState = loadGameState();
+    return { ...savedState, badges: calculateUnlockedBadges(savedState) };
+  });
 
   useEffect(() => {
     saveGameState(state);
@@ -47,7 +52,7 @@ export function GameProvider({ children }) {
   const updateState = (updater) => {
     setState((current) => {
       const next = typeof updater === "function" ? updater(current) : updater;
-      return { ...next, badges: getUnlockedBadges(next) };
+      return { ...next, badges: calculateUnlockedBadges(next) };
     });
   };
 

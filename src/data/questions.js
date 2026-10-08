@@ -127,7 +127,8 @@ export const loopChallenges = [
 export const debugQuestions = [
   {
     id: 1,
-    prompt: "Which instruction is wrong?",
+    prompt: "Which instruction stops the robot from reaching its goal?",
+    goal: "Start facing north. Move north twice, turn right, then move east to the goal.",
     steps: [
       "Move Forward",
       "Move Forward",
@@ -137,11 +138,13 @@ export const debugQuestions = [
     ],
     wrongIndex: 3,
     explanation:
-      "Instruction 4 changed the robot in the wrong direction, so it missed the goal.",
+      "After turning right, the robot faces east. Turning left changes it back to north, so it moves away from the goal instead of east.",
   },
   {
     id: 2,
-    prompt: "Which step causes the problem?",
+    prompt:
+      "Which instruction changes the robot's direction after it reaches the goal?",
+    goal: "Start facing north. Turn left, move west, turn left again, then move south to the goal and stop facing south.",
     steps: [
       "Turn Left",
       "Move Forward",
@@ -150,11 +153,13 @@ export const debugQuestions = [
       "Turn Right",
     ],
     wrongIndex: 4,
-    explanation: "The final turn makes the robot face the wrong direction.",
+    explanation:
+      "After moving south to the goal, the robot should stop facing south. The final right turn makes it face west instead.",
   },
   {
     id: 3,
-    prompt: "Find the bug in this path:",
+    prompt: "Which instruction turns the robot away from its goal?",
+    goal: "Start facing north. Move north, turn right, move east, then continue east to the goal.",
     steps: [
       "Move Forward",
       "Turn Right",
@@ -164,11 +169,12 @@ export const debugQuestions = [
     ],
     wrongIndex: 3,
     explanation:
-      "Turning left instead of right sends the robot away from the goal.",
+      "After moving east, the robot should keep facing east. Turning left points it north, so the last move misses the goal.",
   },
   {
     id: 4,
-    prompt: "Which instruction should be changed?",
+    prompt: "Which extra instruction makes the robot face away from its goal?",
+    goal: "Start facing north. Move north twice, turn right, then move east to the goal and stop facing east.",
     steps: [
       "Move Forward",
       "Move Forward",
@@ -178,11 +184,13 @@ export const debugQuestions = [
     ],
     wrongIndex: 4,
     explanation:
-      "The last turn changes direction when the robot should continue straight.",
+      "After moving east to the goal, the robot should still face east. The final right turn makes it face south instead.",
   },
   {
     id: 5,
-    prompt: "Detect the problem in this plan:",
+    prompt:
+      "Which instruction turns the robot away before it reaches the goal?",
+    goal: "Start facing north. Turn right, move east three times, and reach the goal while facing east.",
     steps: [
       "Turn Right",
       "Move Forward",
@@ -192,6 +200,6 @@ export const debugQuestions = [
     ],
     wrongIndex: 3,
     explanation:
-      "A left turn after moving forward changes the path unexpectedly.",
+      "After moving east twice, the robot should keep facing east for the last move. Turning left points it north, away from the goal.",
   },
 ];

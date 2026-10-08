@@ -16,8 +16,8 @@ function DebugGame() {
       success: isCorrect,
       title: isCorrect ? "🎉 Bug Found!" : "Almost! Keep looking.",
       message: isCorrect
-        ? `Great catch! ${question.explanation}`
-        : `The correct bug was step ${question.wrongIndex + 1}. ${question.explanation}`,
+        ? `That's step ${question.wrongIndex + 1}. ${question.explanation}`
+        : `You chose step ${index + 1}. The bug is step ${question.wrongIndex + 1}. ${question.explanation}`,
     });
 
     recordAnswer("debugging", isCorrect);
@@ -43,6 +43,9 @@ function DebugGame() {
 
         <div className="card game-panel">
           <h2>{question.prompt}</h2>
+          <p>
+            <strong>Mission:</strong> {question.goal}
+          </p>
           <ol className="debug-steps">
             {question.steps.map((step, index) => (
               <li key={`${step}-${index}`}>
