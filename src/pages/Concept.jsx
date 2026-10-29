@@ -53,6 +53,18 @@ const conceptExamples = {
     ],
     challenge: "Now Try a Challenge 🎮",
   },
+  variables: {
+    intro:
+      "A variable is a named box that stores a value, like a number or a word.",
+    examples: ["score = 0", 'name = "Maya"', "lives = 3"],
+    steps: [
+      "Create a box named score",
+      "Put 0 inside it",
+      "Add 10 when you win",
+      "Read the box to show the score",
+    ],
+    challenge: "Now Try a Challenge 🎮",
+  },
 };
 
 export default function Concept() {

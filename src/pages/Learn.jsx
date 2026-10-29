@@ -9,7 +9,7 @@ export default function Learn() {
           <h1>Learn Coding Concepts</h1>
           <p>Start with one idea and build your coding superpowers.</p>
         </div>
-        <div className="cards-grid concept-grid">
+        <div className="cards-grid cards-grid-wide">
           {concepts.map((concept) => (
             <ConceptCard key={concept.id} concept={concept} />
           ))}

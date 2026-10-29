@@ -124,6 +124,45 @@ export const loopChallenges = [
   },
 ];
 
+export const variableQuestions = [
+  {
+    id: 1,
+    prompt:
+      "A box named score starts at 0. The robot adds 10 points. What is score now?",
+    options: [0, 5, 10, 20],
+    correctAnswer: 10,
+    explanation: "score started at 0 and 10 was added, so score is now 10.",
+  },
+  {
+    id: 2,
+    prompt: "lives = 3. The robot loses 1 life. What is lives now?",
+    options: [1, 2, 3, 4],
+    correctAnswer: 2,
+    explanation: "Losing 1 life means lives changes from 3 to 2.",
+  },
+  {
+    id: 3,
+    prompt: 'A variable named name stores "Maya". What does name hold?',
+    options: ["A number", "The word Maya", "Nothing", "A robot"],
+    correctAnswer: "The word Maya",
+    explanation: 'Variables can store text too, like the name "Maya".',
+  },
+  {
+    id: 4,
+    prompt: "coins = 5. The robot collects 3 more coins. What is coins now?",
+    options: [3, 5, 8, 15],
+    correctAnswer: 8,
+    explanation: "5 coins plus 3 more coins equals 8 coins.",
+  },
+  {
+    id: 5,
+    prompt: "A box named level is set to 1. What is the best word for this box?",
+    options: ["A loop", "A variable", "A condition", "A sequence"],
+    correctAnswer: "A variable",
+    explanation: "A named box that stores a value is called a variable.",
+  },
+];
+
 export const debugQuestions = [
   {
     id: 1,

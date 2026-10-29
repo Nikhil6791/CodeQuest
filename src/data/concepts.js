@@ -49,6 +49,16 @@ const concepts = [
       "Debugging means finding a mistake in code and fixing it so the program works properly.",
     game: "debugging",
   },
+  {
+    id: "variables",
+    name: "Variables",
+    icon: "📦",
+    difficulty: "Easy",
+    description: "Storing information to use later",
+    longDescription:
+      "A variable is like a labeled box that stores a piece of information so your program can use it later.",
+    game: "variables",
+  },
 ];
 
 export default concepts;

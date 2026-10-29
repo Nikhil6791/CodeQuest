@@ -8,6 +8,7 @@ const conceptLabels = {
   conditions: "Conditions",
   loops: "Loops",
   debugging: "Debugging",
+  variables: "Variables",
 };
 
 export default function Progress() {

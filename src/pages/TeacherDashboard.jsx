@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { useGame } from "../context/GameContext";
+import { listStudentAccounts } from "../utils/auth";
+import { loadGameState } from "../utils/storage";
 
 const sampleStudents = [
   { name: "Rahul", score: 180, levelsCompleted: 4, status: "🟢" },
@@ -8,21 +9,18 @@ const sampleStudents = [
 ];
 
 export default function TeacherDashboard() {
-  const { state } = useGame();
-
   const students = useMemo(() => {
-    const current = state.studentName
-      ? [
-          {
-            name: state.studentName,
-            score: state.score,
-            levelsCompleted: state.completedLevels.length,
-            status: "🟢",
-          },
-        ]
-      : [];
-    return [...sampleStudents, ...current];
-  }, [state]);
+    const registeredStudents = listStudentAccounts().map((account) => {
+      const gameState = loadGameState(account.username);
+      return {
+        name: account.username,
+        score: gameState.score,
+        levelsCompleted: gameState.completedLevels.length,
+        status: gameState.score > 0 ? "🟢" : "🟡",
+      };
+    });
+    return [...sampleStudents, ...registeredStudents];
+  }, []);
 
   const averageScore = Math.round(
     students.reduce((total, student) => total + student.score, 0) /

@@ -35,6 +35,12 @@ const badges = [
     icon: "🚀",
     description: "Complete all major game categories.",
   },
+  {
+    id: "variable-wizard",
+    name: "Variable Wizard",
+    icon: "📦",
+    description: "Complete 3 variable challenges.",
+  },
 ];
 
 export default badges;

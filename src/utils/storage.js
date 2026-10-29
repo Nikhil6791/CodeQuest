@@ -1,4 +1,4 @@
-export const STORAGE_KEY = "codequest-state";
+const STORAGE_PREFIX = "codequest-state-";
 
 export const defaultGameState = {
   studentName: "",
@@ -11,21 +11,28 @@ export const defaultGameState = {
   conceptProgress: {},
 };
 
-export function loadGameState() {
+export function loadGameState(username) {
+  if (!username) return defaultGameState;
+
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return defaultGameState;
+    const saved = localStorage.getItem(STORAGE_PREFIX + username.toLowerCase());
+    if (!saved) return { ...defaultGameState, studentName: username };
     const parsed = JSON.parse(saved);
     return { ...defaultGameState, ...parsed };
   } catch (error) {
     console.error("Unable to load saved game state", error);
-    return defaultGameState;
+    return { ...defaultGameState, studentName: username };
   }
 }
 
-export function saveGameState(state) {
+export function saveGameState(username, state) {
+  if (!username) return;
+
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    localStorage.setItem(
+      STORAGE_PREFIX + username.toLowerCase(),
+      JSON.stringify(state),
+    );
   } catch (error) {
     console.error("Unable to save game state", error);
   }

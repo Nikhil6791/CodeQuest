@@ -51,6 +51,16 @@ const games = [
     bestScore: "110",
     to: "/games/debugging",
   },
+  {
+    id: "variables",
+    title: "Variables Challenge",
+    icon: "📦",
+    concept: "Variables",
+    description: "Track what's inside the box as values change.",
+    difficulty: "Easy",
+    bestScore: "100",
+    to: "/games/variables",
+  },
 ];
 
 export default function Games() {
@@ -61,7 +71,7 @@ export default function Games() {
           <h1>🎮 Coding Games</h1>
           <p>Choose a game and start playing!</p>
         </div>
-        <div className="cards-grid games-grid">
+        <div className="cards-grid cards-grid-wide">
           {games.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}

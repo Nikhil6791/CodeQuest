@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import badgesList from "../data/badges";
 import { loadGameState, saveGameState } from "../utils/storage";
+import { useAuth } from "./AuthContext";
 
 const GameContext = createContext();
 
@@ -32,6 +33,10 @@ function calculateUnlockedBadges(nextState) {
     unlocked.push("loop-master");
   }
 
+  if ((correctAnswers.variables || 0) >= 3) {
+    unlocked.push("variable-wizard");
+  }
+
   if (completedGames.length >= 5) {
     unlocked.push("coding-explorer");
   }
@@ -40,14 +45,17 @@ function calculateUnlockedBadges(nextState) {
 }
 
 export function GameProvider({ children }) {
+  const { user } = useAuth();
+  const username = user?.username ?? null;
+
   const [state, setState] = useState(() => {
-    const savedState = loadGameState();
+    const savedState = loadGameState(username);
     return { ...savedState, badges: calculateUnlockedBadges(savedState) };
   });
 
   useEffect(() => {
-    saveGameState(state);
-  }, [state]);
+    saveGameState(username, state);
+  }, [username, state]);
 
   const updateState = (updater) => {
     setState((current) => {
@@ -125,6 +133,7 @@ export function GameProvider({ children }) {
       "conditions",
       "loops",
       "debugging",
+      "variables",
     ];
 
     concepts.forEach((conceptId) => {
@@ -152,6 +161,13 @@ export function GameProvider({ children }) {
       if (
         conceptId === "conditions" &&
         state.completedGames.includes("if-else")
+      ) {
+        value = Math.max(value, 75);
+      }
+
+      if (
+        conceptId === "variables" &&
+        state.completedGames.includes("variables")
       ) {
         value = Math.max(value, 75);
       }
